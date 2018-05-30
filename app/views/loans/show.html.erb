@@ -1,0 +1,37 @@
+<!-- JS VARIABLES --->
+<span id="span_periods" class="hidden"><%= @periods %></span>
+<span id="span_payment" class="hidden"><%= @payment %></span>
+<span id="span_interest_rate" class="hidden"><%= @interest_rate %></span>
+<span id="span_amount" class="hidden"><%= @amount %></span>
+<span id="span_payment_id_yearly_frecuency" class="hidden"><%= @payment_id_yearly_frecuency %></span>
+
+
+
+<!-- LOAN INFORMATION -->
+<div class="row">
+  <div class="col-md-7 payment-info text-center">
+    <h2><%= @periods %> pagos <%= @payment_name %> de</h2>
+    <h2 class="muli-font"><%= number_to_currency(@payment) %></h2>
+  </div>
+  <div class="col-md-5 loan-info">
+    <p>Total a recibir: <%= number_to_currency(@amount) %></p>
+    <p>Tasa de interés anual: <%= @interest_rate_percentage %>% </p>
+    <p>Total de intereses: <%= number_to_currency(@total_interest) %> </p>
+    <p><strong>Total a pagar: <%= number_to_currency(@total_to_pay) %> </strong></p>
+  </div>
+</div>
+<div class="buttons-loan row text-right">
+    <%= link_to("Volver a calcular", root_path, class: "btn btn-default") %>
+    <button class="btn btn-default btn-download-to-excel hidden-xs">Exportar tabla a Excel</button>
+    <!-- <button class="btn btn-default" data-toggle="modal" data-target="#loan_modal">Enviar copia por email</button> -->
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <!-- AMORTIZATION TABLE JS -->
+    <%= render 'layouts/shared/amortization_table_js' %>
+  </div>
+</div>
+<div class="row text-right">
+  <button class="btn btn-default btn-download-to-excel hidden-xs">Exportar tabla a Excel</button>
+</div>
+<!-- MODAL TO UPDATE LOAN AND SEND EMAIL -->

@@ -1,0 +1,48 @@
+<h3>Tabla de amortización</h3>
+<hr>
+<table id="amortization_table" class="table table-striped">
+<thead>
+<tr>
+  <th>Periodo</th>
+  <th>Pago</th>
+  <th>Capital</th>
+  <th>Interes</th>
+  <th>Saldo</th>
+</tr>
+</thead>
+<tbody>
+<% for i in(1..@loan.periods(@loan)) %>
+<tr>
+  <td><%= "#{i}" %></td>
+  <td><%= "#{number_to_currency(@payments[i])}" %></td>
+  <td><%= "#{number_to_currency(@principals[i])}" %></td>
+  <td><%= "#{number_to_currency(@interests[i])}" %></td>
+  <td><%= "#{number_to_currency(@balances[i])}" %></td>
+</tr>
+<% end %>
+</tbody>
+</table>
+
+<!-- Table to export to Excel -->
+<table id="amortization_table_not_currency" class="hidden">
+<thead>
+<tr>
+  <th>PERIODO</th>
+  <th>PAGO</th>
+  <th>CAPITAL</th>
+  <th>INTERES</th>
+  <th>SALDO</th>
+</tr>
+</thead>
+<tbody>
+<% for i in(1..@loan.periods(@loan)) %>
+<tr>
+  <td><%= "#{i}" %></td>
+  <td><%= "#{@payments[i]}" %></td>
+  <td><%= "#{@principals[i]}" %></td>
+  <td><%= "#{@interests[i]}" %></td>
+  <td><%= "#{@balances[i]}" %></td>
+</tr>
+<% end %>
+</tbody>
+</table>

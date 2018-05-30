@@ -1,0 +1,6 @@
+<%= @loan.periods(@loan) %> pagos <%= @loan.payment_id_name(@loan.payment_id) %> de
+<%= number_to_currency(@loan.payment(@loan)) %>
+Total a recibir: <%= number_to_currency(@loan.amount) %>
+Tasa de interés anual: <%= @loan.interest_rate * 100 %>%
+Total de intereses: <%= number_to_currency((@loan.payment(@loan) * @loan.periods(@loan)) - @loan.amount) %>
+<strong>Total a pagar: <%= number_to_currency(@loan.payment(@loan) * @loan.periods(@loan)) %> </strong>

@@ -1,0 +1,33 @@
+<!-- LOAN INFORMATION -->
+<p><%= @loan.periods(@loan) %> pagos <%= @loan.payment_id_name(@loan.payment_id) %> de <%= number_to_currency(@loan.payment(@loan)) %></p>
+<p>Total a recibir: <%= number_to_currency(@loan.amount) %></p>
+<p>Tasa de interés anual: <%= @loan.interest_rate * 100 %>% </p>
+<p>Total de intereses: <%= number_to_currency((@loan.payment(@loan) * @loan.periods(@loan)) - @loan.amount) %> </p>
+<!-- <p><strong>Total a pagar: <%= number_to_currency((@loan.payment(@loan) * @loan.periods(@loan))) %> </strong></p> -->
+<p><strong>Total a pagar: <%= number_to_currency(@loan.payment(@loan) * @loan.periods(@loan)) %> </strong></p>
+<br>
+<br>
+<h3>Tabla de amortización</h3>
+<hr>
+<table id="amortization_table" class="table table-striped">
+<thead>
+<tr>
+  <th>Periodo</th>
+  <th>Pago</th>
+  <th>Capital</th>
+  <th>Interes</th>
+  <th>Saldo</th>
+</tr>
+</thead>
+<tbody>
+<% for i in(1..@loan.periods(@loan)) %>
+<tr>
+  <td><%= "#{i}" %></td>
+  <td><%= "#{number_to_currency(@payments[i])}" %></td>
+  <td><%= "#{number_to_currency(@principals[i])}" %></td>
+  <td><%= "#{number_to_currency(@interests[i])}" %></td>
+  <td><%= "#{number_to_currency(@balances[i])}" %></td>
+</tr>
+<% end %>
+</tbody>
+</table>

@@ -1,0 +1,38 @@
+<form action="/loans" method="POST">
+  <%= token_tag %>
+  <div class="form-group">
+    <label>Tasa de interés anual:</label>
+    <input class="form-control" type="number" min="1" step="any" name="loan[interest_rate]" placeholder="Sin signo de '%' por ejemplo: 12.5 " required>
+  </div>
+  <div class="form-group">
+    <label>Cantidad a pedir:</label>
+    <input class="form-control" type="number" min="1" step="any" name="loan[amount]" required>
+  </div>
+  <div class="form-group">
+    <label>Plazo del préstamo:</label>
+    <div class="row">
+      <div class="col-md-6" style="margin-bottom:20px;">
+         <input id="term_input" class="form-control" type="number" name="loan[term]" max="500" required>
+      </div>
+      <div class="col-md-6">
+        <select id="term_id_input" class="form-control" type="text" name="loan[term_id]">
+          <option value="1">Meses</option>
+          <option value="2">Años</option>
+        </select>
+      </div>
+    </div>
+  </div>
+  <div class="form-group">
+    <label>Selecciona el tipo de pago:</label>
+    <br>
+    <div class="btn-group" role="group">
+      <button type="button" class="btn-payment-type btn btn-default" value="1">Mensual</button>
+      <button type="button" class="btn-payment-type btn btn-default" value="2">Quincenal</button>
+      <button type="button" class="btn-payment-type btn btn-default" value="3">Semanal</button>
+    </div>
+  </div>
+  <div class="form-group text-right">
+    <button id="btn_calculate_payment" type="submit" class="btn btn-default btn-lg">Calcular pagos</button>
+  </div>
+  <input id="input_payment_id" type="hidden" name="loan[payment_id]" value="">
+</form>

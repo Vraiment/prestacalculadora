@@ -1,0 +1,78 @@
+$( document ).ready(function() {
+
+  // Update the payment_id parameter on form_loan partial
+  $( ".btn-payment-type" ).click(function() {
+    var selected_button = $(this);
+    var not_selected_buttons =  $('.btn-payment-type').not(this);
+    not_selected_buttons.removeClass("active")
+    selected_button.addClass("active")
+    $("#input_payment_id").val(selected_button.val());
+  });
+
+  $( "#btn_calculate_payment" ).click(function(event) {
+    var term = $("#term_input").val();
+    var term_id = $("#term_id_input").val();
+
+    if ((term > 30 && term_id == 2) || (term > 360 && term_id == 1)) {
+      event.preventDefault();
+      alert("Plazo no permitido: Reduzca el plazo a 30 años o menos");
+      $("#term_input").focus();
+    }
+
+  });
+
+  $( ".btn-download-to-excel").click(function(){
+    $("#amortization_table_to_export").table2excel({
+      exclude: ".excludeThisClass",
+      name: "Tabla de amortizacion",
+      filename: "tabla-pagos-prestacalculadora" //do not include extension
+    });
+  });
+
+  // GET VARIABLES
+  var periods = $("#span_periods").text();
+  var payment = $("#span_payment").text();
+  var interest_rate = $("#span_interest_rate").text();
+  var amount = $("#span_amount").text();
+  var payment_id_yearly_frecuency = $("#span_payment_id_yearly_frecuency").text();
+
+  // PRINT AMORTIZATION TABLE
+  var credito = [];
+  var principal = [];
+  var interes = [];
+  // var ivaInteres = [];
+  var payment_array = [];
+  var balances = [];
+
+  //Condiciones inciales
+  credito[0] = amount;
+  principal[0] = 0;
+  interes[0] = 0;
+  // ivaInteres[0] = 0;
+  payment_array[0] = 0;
+  balances[0] = credito[0]-principal[0];
+
+  for(var i=1; i<=periods; i++){
+    credito[i] = balances[i-1];
+    // interes[i] = saldo[i-1]*rateToPay/getYearFrecuency(frecuency);
+    interes[i] = balances[i-1]*interest_rate/payment_id_yearly_frecuency;
+    // ivaInteres[i] = interes[i]*0.16;
+    // if(i != periods){
+    //   payment_array[i] = payment;
+    // }
+    // else{
+    //   // pago[i] = saldo[i-1]+interes[i]+ivaInteres[i];
+    //   payment_array[i] = balances[i-1]+interes[i];
+    // }
+    // abono[i] = pago[i]-interes[i]-ivaInteres[i];
+    payment_array[i] = payment;
+    principal[i] = payment_array[i]-interes[i];
+    balances[i] = credito[i]-principal[i];
+    $("#amortization_table_js tbody").append("<tr><td>"+i+"</td><td>"+numeral(payment_array[i]).format('$0,0.00')+"</td><td>"+numeral(principal[i]).format('$0,0.00')+"</td><td>"+numeral(interes[i]).format('$0,0.00')+"</td><td>"+numeral(balances[i]).format('$0,0.00')+"</td></tr>");
+    $("#amortization_table_to_export tbody").append("<tr><td>"+i+"</td><td>"+numeral(payment_array[i]).format('00.00')+"</td><td>"+numeral(principal[i]).format('00.00')+"</td><td>"+numeral(interes[i]).format('00.00')+"</td><td>"+numeral(balances[i]).format('00.00')+"</td></tr>");
+    // $("#amortization_table_js tbody").append("<tr><td>"+i+"</td><td>"+payment_array[i]+"</td><td>"+principal[i]+"</td><td>"+interes[i]+"</td><td>"+balances[i]+"</td></tr>");
+  }
+  // return sum(pago);
+  // alert(payment_id_yearly_frecuency)
+
+});

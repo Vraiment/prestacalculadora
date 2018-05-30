@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Calculadora de pagos para tu préstamo online">
+    <meta property="og:url" content="http://www.prestacalculadora.com" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="PrestaCalculadora" />
+    <meta property="og:description" content="Calculadora de préstamos y tablas de amortización online" />
+    <meta property="og:image" content="#{image_url('prestacalculadora-logo.jpg')}" />
+    <title>PrestaCalculadora - Calculadora de préstamos online</title>
+    <%= csrf_meta_tags %>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <link href="https://fonts.googleapis.com/css?family=Muli" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Raleway:900" rel="stylesheet">
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+
+    <div class="container" style="padding-bottom: 20px">
+      <div class="row">
+        <div class="col-md-9">
+          <a href="/" class="anchor-non-style"><h1>PrestaCalculadora</h1></a>
+          <h3>Calculadora de préstamos y tablas de amortización online</h3>
+          <br>
+          <div class="wrap-content animated fadeIn">
+            <%= yield %>
+          </div>
+          <div class="text-center">
+            <hr class="prestacalculadora">
+            <h4 class="font-logo">Tu Calculadora de Préstamos Online</h4>
+            <p>© <%= Time.now.year %> PrestaCalculadora. Todos los derechos reservados.</p>
+            <small>Calculadora de pagos para tu crédito e impresión de tablas de amortización online</small><br>
+            <small>Funciona mejor con <br><a href="https://www.mozilla.org/es-MX/firefox/new/" target="_blank"><%= image_tag "firefox-logo-prestacalculadora.png", alt: "Firefox", width: "36" %></a> || <a href="https://www.google.com.mx/chrome/browser/desktop/index.html" target="_blank"><%= image_tag "chrome-logo-prestacalculadora.png", alt: "Google Chrome", width: "33" %></a> </small>
+            <!-- <small>Términos y condiciones</small> -->
+          </div>
+        </div>
+        <div class="col-md-3 animated fadeIn">
+          <h4>Calcula los pagos de tu préstamo online</h4>
+          <p>Utiliza la PrestaCalculadora para calcular fácilmente el pago por créditos o préstamos con tasas de interes anualizadas. El pago calculado no considera IVA, comisiones y seguros asociados a tu crédito ó préstamo.</p>
+          <h4>Utiliza la calculadora para imprimir tu plan de pagos</h4>
+          <p>Con PrestaCalculadora podrás imprimir directamente tu tabla de amortización (plan de pagos) ó descargarlo para trabajarlo en Excel y presentarlo a tu cliente.</p>
+          <h4>Plazo permitido</h4>
+          <p>PrestaCalculadora permite calcular pagos para préstamos con plazos de hasta 30 años ó 360 meses en cualquiera de los tipos de pago.</p>
+        </div>
+      </div>
+    </div>
+
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/numeral.js/1.4.5/numeral.min.js"></script>
+
+  </body>
+</html>
