@@ -1,24 +1,30 @@
-# README
+# Prestacalculadora
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Prestacalculadora is simple web loan payments plan generator. You can export/download your payments plan to Excel.
 
-Things you may want to cover:
+### Live Demo
 
-* Ruby version
+A Live Demo is available on [https://prestacalculadora.herokuapp.com](https://prestacalculadora.herokuapp.com/)
 
-* System dependencies
+## Getting Started
 
-* Configuration
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a production system like Heroku.
 
-* Database creation
+### Prerequisites
 
-* Database initialization
+You will need to have Ruby on Rails 5.0+ installed on your system. We recommended you to follow the [GoRails Setup Ruby on Rails Guide](https://gorails.com/setup/osx/10.13-high-sierra).
 
-* How to run the test suite
+### Installing
 
-* Services (job queues, cache servers, search engines, etc.)
+Once you have Ruby on Rails 5.0+ properly installed and configured you can make:
 
-* Deployment instructions
+```
+git clone https://github.com/tolesco/prestacalculadora.git
+cd prestacalculadora
+rails db:create
+rails db:migrate
+```
 
-* ...
+### Authors
+* **Francisco Rodríguez (tolesco)** - [@tolesco](https://github.com/tolesco)
+
