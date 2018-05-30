@@ -5,6 +5,7 @@ Prestacalculadora is simple web loan payments plan generator. You can export/dow
 ### Live Demo
 
 A Live Demo is available on [https://prestacalculadora.herokuapp.com](https://prestacalculadora.herokuapp.com/)
+![alt text](https://raw.githubusercontent.com/tolesco/prestacalculadora/master/app/assets/images/screenshot.png)
 
 ## Getting Started
 
